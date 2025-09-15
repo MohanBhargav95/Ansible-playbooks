@@ -6,8 +6,8 @@
     ansible.builtin.command: id expense
     # USER is a variable that gets output from the above command
     register: USER
-    ignore_unreachable: true
+    ignore_unreachable: True
     
   - name: print the user information
     ansible.builtin.debug:
-      msg: "user info: {{ user }}"
+      msg: "user info: {{ USER }}"
