@@ -10,12 +10,12 @@
     ansible.builtin.dnf:
       name: nginx
       present: present
-    when: ansible_distribution == "RedHat"
+    when: ansible_os_family == "RedHat"
   
   - name: if os is ubuntu
     ansible.builtin.apt:
       name: nginx
       state: present
-    when: ansible_distribution == "Ubuntu"
+    when: ansible_os_family == "Ubuntu"
       
    
