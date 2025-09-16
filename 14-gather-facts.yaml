@@ -1,5 +1,5 @@
 - name: gathering facts
-  host: web
+  hosts: web
   become: yes 
   tasks:
   - name: print the distribution facts
