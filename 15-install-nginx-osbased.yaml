@@ -1,4 +1,5 @@
 - name: installing nginx based on os
+  hosts: web
   become: yes
   tasks:
   - name: os distribution
