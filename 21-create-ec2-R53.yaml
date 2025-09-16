@@ -9,6 +9,7 @@
     - mysql
     - backend
     - frontend
+    zone: devopstesting.space
   tasks:
    - name: creating ec2 instance using boto3
      amazon.aws.ec2_instance:
@@ -22,4 +23,17 @@
 
    - name: print the output
      ansible.builtin.debug:
-       msg: "{{ ec2_instances.private_ip_address}}"
+       msg: "{{ ec2_instances}}"
+
+   - name: create route 53 records 
+     amazon.aws.route53:
+       state: present
+       zone: "{{ zone }}"
+       record: "{{item.item}}.{{ zone }}"
+       type: A
+       ttl: 1
+       value: "{{ item.instances[0].private_ip_address }}"
+       wait: true 
+       overwrite: true
+     loop: "{{ ec2_instances.results }}"
+     
