@@ -1,0 +1,6 @@
+- name: command vs shell
+  hosts: web
+  become: yes
+  tasks:
+   - name: command vs shell
+     ansible.builtin.command: ls -ltr > /tmp/output.txt
