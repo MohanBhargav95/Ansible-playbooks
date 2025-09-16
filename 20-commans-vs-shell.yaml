@@ -6,3 +6,5 @@
    - name: command vs shell
      ansible.builtin.shell: ls -ltr > /tmp/output.txt
      #.shell will only work in the above line because command cannot perform redirects aor any complex shell commands
+     #shell module logs into the server and executes the command 
+     #command module only issues the command
