@@ -1,0 +1,13 @@
+- name: installing nginx based on os
+  become: yes
+  tasks:
+  - name: os distribution
+    ansible.builtin.debug:
+      msg: "{{ ansible_distribution }}"
+
+  - name: install nginx if redhat os
+    ansible.builtin.dnf:
+      name: nginx
+      present: present
+    when: ansible_distribution == "redhat"
+   
