@@ -3,4 +3,5 @@
   become: yes
   tasks:
    - name: command vs shell
-     ansible.builtin.command: ls -ltr > /tmp/output.txt
+     ansible.builtin.shell: ls -ltr > /tmp/output.txt
+     #.shell will only work in the above line because command cannot perform redirects aor any complex shell commands
