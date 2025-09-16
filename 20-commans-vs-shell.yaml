@@ -17,3 +17,4 @@
    - name: check the process
      ansible.builtin.command: ps -ef | grep ssh
      register: output
+    #this will fail because | cannot be used in command module
