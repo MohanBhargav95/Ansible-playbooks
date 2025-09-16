@@ -1,0 +1,8 @@
+- name: gathering facts
+  host: web
+  become: yes 
+  tasks:
+  - name: print the distribution facts
+    ansible.builtin.debug:
+      msg: "The distribution is {{ ansible_distribution }}"
+    
