@@ -24,16 +24,32 @@
    - name: print the output
      ansible.builtin.debug:
        msg: "{{ ec2_instances}}"
-
-   - name: create route 53 records 
+     
+     #private IP r53
+   - name: create r53 private records 
      amazon.aws.route53:
        state: present
        zone: "{{ zone }}"
-       record: "{{item.item}}.{{ zone }}"
+       record: "{{item.item}}.{{ zone }}" #mysql.devopstesting.space
        type: A
        ttl: 1
        value: "{{ item.instances[0].private_ip_address }}"
        wait: true 
        overwrite: true
      loop: "{{ ec2_instances.results }}"
-     
+
+     #public IP r53
+   
+   - name: create r53 public records for front end
+     amazon.aws.route53:
+       state: present
+       zone: "{{ zone }}"
+       record: "{{item.item}}.{{ zone }}" #frontend.devopstesting.space
+       type: A
+       ttl: 1
+       value: "{{ item.instances[0].public_ip_address }}"
+       wait: true 
+       overwrite: true
+     loop: "{{ ec2_instances.results }}" 
+     when: ec2_instances.results.item == "frontend"
+     #this will make sure that public record is created only for frontend servers
