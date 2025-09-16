@@ -11,4 +11,11 @@
       name: nginx
       present: present
     when: ansible_distribution == "RedHat"
+  
+  - name: if os is ubuntu
+    ansible.builtin.apt:
+      name: nginx
+      state: present
+    when: ansible_distribution == "Ubuntu"
+      
    
