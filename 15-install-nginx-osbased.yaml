@@ -10,5 +10,5 @@
     ansible.builtin.dnf:
       name: nginx
       present: present
-    when: ansible_distribution == "redhat"
+    when: ansible_distribution == "RedHat"
    
